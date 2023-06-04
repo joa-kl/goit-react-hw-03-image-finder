@@ -37,7 +37,8 @@ export class App extends Component {
 
   async componentDidMount() {
     // const response = await axios.get("&image_type=photo&orientation=horizontal&per_page=12");
-    const response = await axios.get(`https://pixabay.com/api/?key=${key}`);
+    // const response = await axios.get(`https://pixabay.com/api/?key=${key}&image_type=photo&orientation=horizontal&per_page=12`);
+    const response = await axios.get(`https://pixabay.com/api/?key=34935392-24250165e01040adac8554f89&image_type=photo&pretty=true&per_page=12`);
     this.setState({ images: response.data.hits });
   }
 
