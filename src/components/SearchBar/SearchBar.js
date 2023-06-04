@@ -2,7 +2,7 @@ import { Component } from "react";
 
 
 
-export const SearchBar = (onSubmit) => (
+export const SearchBar = ({ onSubmit }) => (
     < header class="searchbar" >
         <form class="form" onSubmit={onSubmit}>
             <button type="submit" class="button">
