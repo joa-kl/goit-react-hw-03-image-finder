@@ -43,6 +43,25 @@ export class App extends Component {
     this.setState({ images: response.data.hits });
   }
 
+   handleInputChange = evt => {
+    const { name, value } = evt.target;
+    this.setState({ [name]: value });
+  };
+
+  handleSearchQuerySubmit = evt => {
+    // const id = nanoid();
+    const name = evt.name;
+    const number = evt.number;
+    const contactsLists = [...this.state.contacts];
+    const doesExist = contactsLists.findIndex(contact => name === contact.name) !== -1;
+
+    doesExist
+      ? alert(`${name} is already in contacts.`)
+      : contactsLists.push({  name, number });
+    
+    this.setState({ contacts: contactsLists });
+  };
+
   submitSearchQuery() {
 
   }
@@ -53,7 +72,7 @@ export class App extends Component {
 
     return (
       <div>
-        <SearchBar onSubmit={this.submitSearchQuery } />
+        <SearchBar onSubmit={this.handleSearchQuerySubmit} />
         <ImagesList images={images} query={query} />
       </div>
     );
