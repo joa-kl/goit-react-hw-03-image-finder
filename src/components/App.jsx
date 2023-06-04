@@ -22,9 +22,9 @@ axios.defaults.baseURL = `https://pixabay.com/api/?key=${key}`;
 
 const ImagesList = ({ images }) => (
   <ul>
-    {images.map(({ id, webformatURL}) => (
+    {images.map(({ id, webformatURL, tags}) => (
       <li key={id}>
-        <img src={webformatURL} target="_blank" rel="noreferrer noopener" alt=""/>
+        <img src={webformatURL} target="_blank" rel="noreferrer noopener" alt={tags} />
       </li>
     ))}
   </ul>
