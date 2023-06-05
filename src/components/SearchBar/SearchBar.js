@@ -1,4 +1,3 @@
-import { Component } from "react";
 import css from './../Styles.module.css'
 import svg from '../Images/icons.svg#magnifying-glass';
 
