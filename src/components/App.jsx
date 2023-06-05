@@ -1,6 +1,5 @@
 // import css from './App.module.css'
-import { SearchBar } from './SearchBar/SearchBar';
-import css from './Styles.module.css'
+
 
 
 // const key = `34935392-24250165e01040adac8554f89`
@@ -17,23 +16,21 @@ import css from './Styles.module.css'
 
 import React, { Component } from "react";
 import axios from "axios";
+import { SearchBar } from './SearchBar/SearchBar';
+import css from './Styles.module.css'
+import { fetchImages } from "./api/api";
+import { ImageGallery } from "./ImageGallery/ImageGallery";
 
 const key = "34935392-24250165e01040adac8554f89";
 axios.defaults.baseURL = `https://pixabay.com/api/?key=${key}`;
 
-const ImagesList = ({ images }) => (
-  <ul className={css.ImageGallery}>
-    {images.map(({ id, webformatURL, tags}) => (
-      <li key={id} className={css.ImageGalleryItem}>
-        <img src={webformatURL} className={css.ImageGalleryItemImage } target="_blank" rel="noreferrer noopener" alt={tags} />
-      </li>
-    ))}
-  </ul>
-);
 
 export class App extends Component {
   state = {
     images: [],
+    isLoading: false,
+    currentSearch: "",
+    pageNr: 1,
   };
 
   async componentDidMount() {
@@ -49,22 +46,44 @@ export class App extends Component {
   };
 
   handleSearchQuerySubmit = evt => {
-    // const id = nanoid();
-    const name = evt.name;
-    const number = evt.number;
-    const contactsLists = [...this.state.contacts];
-    const doesExist = contactsLists.findIndex(contact => name === contact.name) !== -1;
-
-    doesExist
-      ? alert(`${name} is already in contacts.`)
-      : contactsLists.push({  name, number });
-    
-    this.setState({ contacts: contactsLists });
+    evt.preventDefault();
+    this.setState({ isLoading: true });
+    const inputForSearch = evt.target.elements.inputForSearch;
+    if (inputForSearch.value.trim() === '') {
+      return;
+    }
+    const response = fetchImages(inputForSearch.value, 1);
+    this.setState({
+      images: response,
+      isLoading: false,
+      currentSearch: inputForSearch.value,
+      pageNr: 1,
+    });
   };
 
-  submitSearchQuery() {
-
+  handleImageClick = (evt) => {
+    this.setState({
+      modalOpen: true,
+      modalAlt: evt.target.alt,
+      modalImg: evt.target.name,
+    })
   }
+    // const id = nanoid();
+    // const name = evt.name;
+    // const number = evt.number;
+  //   const images = [this.state.images];
+  //   // const doesExist = contactsLists.findIndex(contact => name === contact.name) !== -1;
+
+  //   // doesExist
+  //   //   ? alert(`${name} is already in contacts.`)
+  //   //   : contactsLists.push({  name, number });
+    
+  //   this.setState({ images: images });
+  // };
+
+  // submitSearchQuery() {
+
+  // }
 
   render() {
     const { images } = this.state;
@@ -72,8 +91,8 @@ export class App extends Component {
 
     return (
       <div>
-        <SearchBar onSubmit={this.handleSearchQuerySubmit} query={query} onChange={this.handleInputChange} />
-        <ImagesList images={images}  />
+        <SearchBar onSubmit={this.handleSearchQuerySubmit}/>
+        <ImageGallery onClick={this.handleImageClick} images={images}  />
       </div>
     );
   }
