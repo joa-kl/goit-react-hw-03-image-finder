@@ -1,4 +1,5 @@
 import css from './../Styles.module.css'
+import propTypes from 'prop-types';
 import { FaSistrix } from "react-icons/fa";
 
 export const SearchBar = ({ onSubmit, query, onChange }) => (
@@ -20,3 +21,8 @@ export const SearchBar = ({ onSubmit, query, onChange }) => (
         </form>
     </header >
 )
+
+SearchBar.propTypes = {
+    onSubmit: propTypes.func,
+    onChange: propTypes.func,
+}
