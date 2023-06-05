@@ -1,4 +1,5 @@
 import css from '../Styles.module.css';
+import propTypes from 'prop-types';
 
 export const ImageGalleryItem = ({ image, onClick}) => (
     <li key={image.id} onClick={onClick} className={css.ImageGalleryItem}>
@@ -13,4 +14,7 @@ export const ImageGalleryItem = ({ image, onClick}) => (
     </li>
 );
 
-
+ImageGalleryItem.propTypes = {
+    image: propTypes.object.isRequired,
+    onClick: propTypes.func.isRequired,
+}
