@@ -13,10 +13,4 @@ export const ImageGalleryItem = ({ image, onClick}) => (
     </li>
 );
 
-    // const ImagesList = ({ images }) => (
-    // <ul className={css.ImageGallery}>
-    //     {images.map(({ id, webformatURL, tags }) => (
-            
-    //     ))}
-    // </ul>
 

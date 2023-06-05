@@ -1,15 +1,11 @@
 import React, { Component } from "react";
-// import axios from "axios";
 import { SearchBar } from './SearchBar/SearchBar';
-import css from './Styles.module.css'
 import { fetchImages } from "./api/api";
 import { ImageGallery } from "./ImageGallery/ImageGallery";
 import { Button } from "./Button/Button";
 import { Modal } from "./Modal/Modal";
 import { Loader } from "./Loader/Loader";
 
-// const key = "34935392-24250165e01040adac8554f89";
-// axios.defaults.baseURL = `https://pixabay.com/api/?key=${key}`;
 
 
 export class App extends Component {
@@ -31,7 +27,6 @@ export class App extends Component {
 
   handleSearchQuerySubmit = (evt) => {
     evt.preventDefault();
-    // this.setState({ isLoading: true });
     this.getImages(this.state.query);
   };
 
@@ -85,7 +80,7 @@ export class App extends Component {
   }
 
   render() {
-    const { images, isLoading, modalOpen, modalImg} = this.state;
+    const { images, isLoading, modalOpen} = this.state;
 
 
     return (

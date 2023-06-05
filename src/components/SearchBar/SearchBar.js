@@ -1,8 +1,6 @@
 import css from './../Styles.module.css'
 import { FaSistrix } from "react-icons/fa";
 
-
-
 export const SearchBar = ({ onSubmit, query, onChange }) => (
     < header className={css.Searchbar} >
         <form className={css.SearchForm} onSubmit={onSubmit}>
