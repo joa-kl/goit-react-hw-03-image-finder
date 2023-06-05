@@ -1,7 +1,7 @@
 import css from '../Styles.module.css';
 
-export const ImageGalleryItem = ({ image }) => (
-    <li key={image.id} className={css.ImageGalleryItem}>
+export const ImageGalleryItem = ({ image, onClick}) => (
+    <li key={image.id} onClick={onClick} className={css.ImageGalleryItem}>
         <img
             src={image.webformatURL}
             className={css.ImageGalleryItemImage}

@@ -7,17 +7,17 @@ import svg from '../Images/icons.svg#magnifying-glass';
 export const SearchBar = ({ onSubmit }) => (
     < header className={css.Searchbar} >
         <form className={css.SearchForm} onSubmit={onSubmit}>
-            <button type="submit" class="button">Search pictures
+            <button type="submit" className={css.SearchFormButton}>Search pictures
                 {/* <svg src="" class="button-label">
                     <use href={svg}></use>
                 </svg> */}
             </button>
 
             <input
-                class="input"
+                className={css.SearchFormInput}
                 type="text"
-                autocomplete="off"
-                autofocus
+                autoComplete="off"
+                autoFocus
                 placeholder="Search images and photos"
                 // value={query}
                 // onChange={onChange}

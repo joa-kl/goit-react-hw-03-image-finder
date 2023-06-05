@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { SearchBar } from './SearchBar/SearchBar';
 import css from './Styles.module.css'
 import { fetchImages } from "./api/api";
