@@ -1,13 +1,16 @@
 import { Component } from "react";
 import css from './../Styles.module.css'
+import svg from '../Images/icons.svg#magnifying-glass';
 
 
 
-export const SearchBar = ({ onSubmit, query }) => (
+export const SearchBar = ({ onSubmit, query, onChange }) => (
     < header className={css.Searchbar} >
         <form className={css.SearchForm} onSubmit={onSubmit}>
-            <button type="submit" class="button">
-                <span class="button-label">Search</span>
+            <button type="submit" class="button">Search pictures
+                {/* <svg src="" class="button-label">
+                    <use href={svg}></use>
+                </svg> */}
             </button>
 
             <input
@@ -17,6 +20,7 @@ export const SearchBar = ({ onSubmit, query }) => (
                 autofocus
                 placeholder="Search images and photos"
                 value={query}
+                onChange={onChange}
             />
         </form>
     </header >

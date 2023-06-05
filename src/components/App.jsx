@@ -72,8 +72,8 @@ export class App extends Component {
 
     return (
       <div>
-        <SearchBar onSubmit={this.handleSearchQuerySubmit} />
-        <ImagesList images={images} query={query} />
+        <SearchBar onSubmit={this.handleSearchQuerySubmit} query={query} onChange={this.handleInputChange} />
+        <ImagesList images={images}  />
       </div>
     );
   }
