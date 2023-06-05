@@ -5,5 +5,8 @@
     justify-content: center;
     align-items: center;
     font-synthesis: 20px;
-    color: #010101,
+    color: #010101;
+   margin: 0 auto;
+   position: relative;
+    
 }
