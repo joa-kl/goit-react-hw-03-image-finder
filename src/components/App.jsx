@@ -4,6 +4,7 @@ import { SearchBar } from './SearchBar/SearchBar';
 import css from './Styles.module.css'
 import { fetchImages } from "./api/api";
 import { ImageGallery } from "./ImageGallery/ImageGallery";
+import { Button } from "./Button/Button";
 
 // const key = "34935392-24250165e01040adac8554f89";
 // axios.defaults.baseURL = `https://pixabay.com/api/?key=${key}`;
@@ -62,6 +63,17 @@ export class App extends Component {
     })
   }
 
+  handleClickMore = async() => {
+    const response = await fetchImages(
+      this.state.query,
+      this.state.pageNr + 1
+    );
+    this.setState({
+      images: [...this.state.images, ...response],
+      pageNr: this.state.pageNr + 1,
+    });
+  }
+
 
   render() {
     const { images, query } = this.state;
@@ -70,7 +82,8 @@ export class App extends Component {
     return (
       <div>
         <SearchBar onSubmit={this.handleSearchQuerySubmit} onChange={this.handleInputChange } />
-        <ImageGallery onClick={this.handleImageClick} images={images}  />
+        <ImageGallery onClick={this.handleImageClick} images={images} />
+        <Button onClick={this.handleClickMore} />
       </div>
     );
   }
