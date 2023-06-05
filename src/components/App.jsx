@@ -18,19 +18,12 @@ export class App extends Component {
     error: null,
   };
 
-  // async componentDidMount() {
-  //   // const response = await axios.get("&image_type=photo&orientation=horizontal&per_page=12");
-  //   // const response = await axios.get(`https://pixabay.com/api/?key=${key}&image_type=photo&orientation=horizontal&per_page=12`);
-  //   const response = await axios.get(`https://pixabay.com/api/?key=34935392-24250165e01040adac8554f89&image_type=photo&pretty=true&per_page=12`);
-  //   this.setState({ images: response.data.hits });
-  // }
-
    handleInputChange = evt => {
     const { name, value } = evt.target;
     this.setState({ [name]: value });
   };
 
-  handleSearchQuerySubmit = async evt => {
+  handleSearchQuerySubmit = (evt) => {
     evt.preventDefault();
     this.getImages(this.state.query);
     // this.setState({ isLoading: true });
@@ -71,12 +64,12 @@ export class App extends Component {
 
 
   render() {
-    const { images } = this.state;
-    const query = "";
+    const { images, query } = this.state;
+    // const query = "";
 
     return (
       <div>
-        <SearchBar onSubmit={this.handleSearchQuerySubmit}/>
+        <SearchBar onSubmit={this.handleSearchQuerySubmit} onChange={this.handleInputChange } />
         <ImageGallery onClick={this.handleImageClick} images={images}  />
       </div>
     );
