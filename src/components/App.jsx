@@ -6,6 +6,7 @@ import { fetchImages } from "./api/api";
 import { ImageGallery } from "./ImageGallery/ImageGallery";
 import { Button } from "./Button/Button";
 import { Modal } from "./Modal/Modal";
+import { Loader } from "./Loader/Loader";
 
 // const key = "34935392-24250165e01040adac8554f89";
 // axios.defaults.baseURL = `https://pixabay.com/api/?key=${key}`;
@@ -18,7 +19,7 @@ export class App extends Component {
     query: "",
     pageNr: 1,
     error: null,
-    modalOpen: true,
+    modalOpen: false,
     modalImg: "",
     modalAlt: "",
   };
@@ -31,20 +32,6 @@ export class App extends Component {
   handleSearchQuerySubmit = (evt) => {
     evt.preventDefault();
     this.getImages(this.state.query);
-    // this.setState({ isLoading: true });
-    // const inputForSearch = evt.target.elements.inputForSearch;
-    // console.log(inputForSearch);
-    // if (inputForSearch.value.trim() === '') {
-    //   return;
-    // }
-    // const response = await fetchImages("dog", 1);
-    // this.setState({
-    //   images: response,
-    //   isLoading: false,
-    //   input: input.value,
-    //   // currentSearch: inputForSearch.value,
-    //   pageNr: 1,
-    // });
   };
 
   getImages = async (query) => {
@@ -97,15 +84,23 @@ export class App extends Component {
   }
 
   render() {
-    const { images, query } = this.state;
-    // const query = "";
+    const { images} = this.state;
+
 
     return (
       <div>
-        <SearchBar onSubmit={this.handleSearchQuerySubmit} onChange={this.handleInputChange } />
-        <ImageGallery onClick={this.handleImageClick} images={images} />
-        <Button onClick={this.handleClickMore} />
-        <Modal src={this.state.modalImg} alt={this.state.modalAlt} handleClose={this.handleModalClose} />
+        {this.state.isLoading
+          ? (<Loader />)
+          : (
+            <React.Fragment>
+              <SearchBar onSubmit={this.handleSearchQuerySubmit} onChange={this.handleInputChange } />
+              <ImageGallery onClick={this.handleImageClick} images={images} />
+              {this.state.images.length > 0 ? (<Button onClick={this.handleClickMore} /> ) : null}
+            </React.Fragment>
+         )}
+        {this.state.modalOpen
+          ? (<Modal src={this.state.modalImg} alt={this.state.modalAlt} handleClose={this.handleModalClose} />)
+          : null}
       </div>
     );
   }
