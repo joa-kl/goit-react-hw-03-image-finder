@@ -1,4 +1,5 @@
 import css from '../Styles.module.css';
+import propTypes from 'prop-types';
 
 export const Button = ({ onClick }) => (
     <button
@@ -8,3 +9,7 @@ export const Button = ({ onClick }) => (
         Load more
     </button>
 );
+
+Button.propTypes = {
+    onClick: propTypes.func,
+}
