@@ -31,6 +31,7 @@ export class App extends Component {
 
   handleSearchQuerySubmit = (evt) => {
     evt.preventDefault();
+    // this.setState({ isLoading: true });
     this.getImages(this.state.query);
   };
 
@@ -84,12 +85,12 @@ export class App extends Component {
   }
 
   render() {
-    const { images} = this.state;
+    const { images, isLoading, modalOpen, modalImg} = this.state;
 
 
     return (
       <div>
-        {this.state.isLoading
+        {isLoading
           ? (<Loader />)
           : (
             <React.Fragment>
@@ -98,7 +99,7 @@ export class App extends Component {
               {this.state.images.length > 0 ? (<Button onClick={this.handleClickMore} /> ) : null}
             </React.Fragment>
          )}
-        {this.state.modalOpen
+        {modalOpen
           ? (<Modal src={this.state.modalImg} alt={this.state.modalAlt} handleClose={this.handleModalClose} />)
           : null}
       </div>

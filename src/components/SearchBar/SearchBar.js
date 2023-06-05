@@ -6,7 +6,7 @@ import svg from '../Images/icons.svg#magnifying-glass';
 export const SearchBar = ({ onSubmit, query, onChange }) => (
     < header className={css.Searchbar} >
         <form className={css.SearchForm} onSubmit={onSubmit}>
-            <button type="submit" className={css.SearchFormButton}>Search pictures
+            <button type="submit" className={css.SearchFormButton}>
                 {/* <svg src="" class="button-label">
                     <use href={svg}></use>
                 </svg> */}
