@@ -91,12 +91,10 @@ export class App extends Component {
             <React.Fragment>
               <SearchBar onSubmit={this.handleSearchQuerySubmit} onChange={this.handleInputChange } />
               <ImageGallery onClick={this.handleImageClick} images={images} />
-              {this.state.images.length > 0 ? (<Button onClick={this.handleClickMore} /> ) : null}
+              {this.state.images.length > 0 && (<Button onClick={this.handleClickMore} /> )}
             </React.Fragment>
          )}
-        {modalOpen
-          ? (<Modal src={this.state.modalImg} alt={this.state.modalAlt} handleClose={this.handleModalClose} />)
-          : null}
+        {modalOpen && (<Modal src={this.state.modalImg} alt={this.state.modalAlt} handleClose={this.handleModalClose} />)}
       </div>
     );
   }
