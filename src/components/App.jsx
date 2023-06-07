@@ -28,6 +28,11 @@ export class App extends Component {
   handleSearchQuerySubmit = (evt) => {
     evt.preventDefault();
     this.getImages(this.state.query);
+
+    // if (query === this.state.query) {
+    //   return;
+    // }
+    // this.setState({ query, pageNr: 1 });
   };
 
   getImages = async (query) => {
@@ -41,6 +46,10 @@ export class App extends Component {
       this.setState({ loading: false });
     }
   }
+
+
+
+  
 
   handleImageClick = (evt) => {
     this.setState({
