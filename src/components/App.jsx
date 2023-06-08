@@ -5,6 +5,7 @@ import { ImageGallery } from "./ImageGallery/ImageGallery";
 import { Button } from "./Button/Button";
 import { Modal } from "./Modal/Modal";
 import { Loader } from "./Loader/Loader";
+// import api from './api/api';
 
 
 
@@ -19,6 +20,18 @@ export class App extends Component {
     modalImg: "",
     modalAlt: "",
   };
+
+  componentDidMount() {
+    this.setState({ loading: true });
+     try {
+      const images = fetchImages("dog");
+      this.setState({ images });
+    } catch (err) {
+      this.setState({ error: err });
+    } finally {
+      this.setState({ loading: false });
+    }
+}
 
    handleInputChange = evt => {
     const { name, value } = evt.target;
@@ -35,17 +48,17 @@ export class App extends Component {
     // this.setState({ query, pageNr: 1 });
   };
 
-  getImages = async (query) => {
-    this.setState({ loading: true });
-    try {
-      const images = await fetchImages(query);
-      this.setState({ images });
-    } catch (err) {
-      this.setState({ error: err });
-    } finally {
-      this.setState({ loading: false });
-    }
-  }
+  // getImages = async (query) => {
+  //   this.setState({ loading: true });
+  //   try {
+  //     const images = await fetchImages(query);
+  //     this.setState({ images });
+  //   } catch (err) {
+  //     this.setState({ error: err });
+  //   } finally {
+  //     this.setState({ loading: false });
+  //   }
+  // }
 
 
 
