@@ -21,11 +21,11 @@ export class App extends Component {
     modalAlt: "",
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.setState({ loading: true });
     window.addEventListener('keydown', this.handleKeyDown);
      try {
-      const images = fetchImages("dog");
+      const images = await fetchImages("dog");
       this.setState({ images });
     } catch (err) {
       this.setState({ error: err });
@@ -49,17 +49,17 @@ export class App extends Component {
     // this.setState({ query, pageNr: 1 });
   };
 
-  // getImages = async (query) => {
-  //   this.setState({ loading: true });
-  //   try {
-  //     const images = await fetchImages(query);
-  //     this.setState({ images });
-  //   } catch (err) {
-  //     this.setState({ error: err });
-  //   } finally {
-  //     this.setState({ loading: false });
-  //   }
-  // }
+  getImages = async (query) => {
+    this.setState({ loading: true });
+    try {
+      const images = await fetchImages(query);
+      this.setState({ images });
+    } catch (err) {
+      this.setState({ error: err });
+    } finally {
+      this.setState({ loading: false });
+    }
+  }
 
 
 
