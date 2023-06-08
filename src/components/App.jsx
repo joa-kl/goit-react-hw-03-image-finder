@@ -23,6 +23,7 @@ export class App extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
+    window.addEventListener('keydown', this.handleKeyDown);
      try {
       const images = fetchImages("dog");
       this.setState({ images });
