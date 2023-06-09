@@ -6,7 +6,7 @@ import { Button } from "./Button/Button";
 import { Modal } from "./Modal/Modal";
 import { Loader } from "./Loader/Loader";
 import api from './api/api';
-import { FaDraft2Digital } from "react-icons/fa";
+// import { FaDraft2Digital } from "react-icons/fa";
 
 
 
@@ -23,7 +23,7 @@ export class App extends Component {
   };
 
   async componentDidMount() {
-    this.setState({ loading: true });
+    this.setState({ isloading: true });
     // window.addEventListener('keydown', this.handleKeyDown);
     try {
       const query = this.state.query;
@@ -32,13 +32,47 @@ export class App extends Component {
     } catch (err) {
       this.setState({ error: err });
     } finally {
-      this.setState({ loading: false });
+      this.setState({ isloading: false });
     }
 }
 
-  componentDidUpdate() {
-    
-  }
+
+     async componentDidUpdate(_, prevState) {
+    // if (!this.state.isLoaded) {
+    //   return;
+    // }
+    if (
+      prevState.query !== this.state.query ||
+      prevState.pageNr !== this.state.pageNr
+    ) {
+      // try {
+      //   const images = await fetchImages
+      //     ({
+      //     query: this.state.query,
+      //     pageNr: this.state.pageNr,
+      //   });
+      //   if (images.totalHitsPage === 0) {
+      //     // Notify.failure('Please write something');
+      //     alert("write something")
+      //   }
+       const query = this.state.query;
+      const images = await api.fetchImages(query);
+      this.setState({ images });
+
+        // this.setState({
+        //   images: [...this.state.images],
+        //   // images: [...this.state.images, ...images.hits],
+        //   isLoading: false,
+          // totalHitsPage: images.totalHitsPage,
+        // });
+      // } catch (error) {
+        // return error
+      }  
+        this.setState({ isLoading: false });
+      
+    }
+  
+  
 
 
    handleInputChange = evt => {
