@@ -5,7 +5,8 @@ import { ImageGallery } from "./ImageGallery/ImageGallery";
 import { Button } from "./Button/Button";
 import { Modal } from "./Modal/Modal";
 import { Loader } from "./Loader/Loader";
-// import api from './api/api';
+import api from './api/api';
+import { FaDraft2Digital } from "react-icons/fa";
 
 
 
@@ -23,9 +24,10 @@ export class App extends Component {
 
   async componentDidMount() {
     this.setState({ loading: true });
-    window.addEventListener('keydown', this.handleKeyDown);
-     try {
-      const images = await fetchImages("dog");
+    // window.addEventListener('keydown', this.handleKeyDown);
+    try {
+      const query = this.state.query;
+      const images = await api.fetchImages(query);
       this.setState({ images });
     } catch (err) {
       this.setState({ error: err });
@@ -34,32 +36,37 @@ export class App extends Component {
     }
 }
 
+  componentDidUpdate() {
+    
+  }
+
+
    handleInputChange = evt => {
     const { name, value } = evt.target;
     this.setState({ [name]: value });
   };
 
-  handleSearchQuerySubmit = (evt) => {
-    evt.preventDefault();
-    this.getImages(this.state.query);
+  // handleSearchQuerySubmit = (evt) => {
+  //   evt.preventDefault();
+  //   this.getImages(this.state.query);
 
     // if (query === this.state.query) {
     //   return;
     // }
     // this.setState({ query, pageNr: 1 });
-  };
+  // };
 
-  getImages = async (query) => {
-    this.setState({ loading: true });
-    try {
-      const images = await fetchImages(query);
-      this.setState({ images });
-    } catch (err) {
-      this.setState({ error: err });
-    } finally {
-      this.setState({ loading: false });
-    }
-  }
+  // getImages = async (query) => {
+  //   this.setState({ loading: true });
+  //   try {
+  //     const images = await fetchImages(query);
+  //     this.setState({ images });
+  //   } catch (err) {
+  //     this.setState({ error: err });
+  //   } finally {
+  //     this.setState({ loading: false });
+  //   }
+  // }
 
 
 
@@ -98,9 +105,9 @@ export class App extends Component {
     }
   };
 
-  componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown);
-  }
+  // componentDidMount() {
+  //   window.addEventListener('keydown', this.handleKeyDown);
+  // }
 
   render() {
     const { images, isLoading, modalOpen} = this.state;

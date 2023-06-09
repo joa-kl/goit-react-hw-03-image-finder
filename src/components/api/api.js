@@ -10,6 +10,6 @@ export const fetchImages = async (query, pageNr) => {
         return response.data.hits;
 };
 
-// export default {
-//     fetchImages
-// };
+export default {
+    fetchImages,
+};
