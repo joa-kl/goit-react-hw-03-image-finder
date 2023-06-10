@@ -1,20 +1,23 @@
 import css from '../Styles.module.css';
 import propTypes from 'prop-types';
 
-export const ImageGalleryItem = ({ image, onClick}) => (
-    <li key={image.id} onClick={onClick} className={css.ImageGalleryItem}>
-        <img
-            src={image.webformatURL}
-            alt={image.tags}
-            name={image.largeImageURL}
-            className={css.ImageGalleryItemImage}
-            target="_blank"
-            rel="noreferrer noopener"
-             />
-    </li>
-);
+export const ImageGalleryItem = ({ webformatURL, largeImageURL, tags, onOpenModal }) => (
+  
+        <li className={css.ImageGalleryItem}>
+            <img
+            className={css.Image}
+            src={webformatURL}
+            data-source={largeImageURL}
+            alt={tags}
+            onClick={onOpenModal}
+            />
+        </li>
+    );
+
 
 ImageGalleryItem.propTypes = {
-    image: propTypes.object.isRequired,
-    onClick: propTypes.func.isRequired,
+    webformatURL: propTypes.string.isRequired,
+    largeImageURL: propTypes.string.isRequired,
+    tags: propTypes.string.isRequired,
+    onOpenModal: propTypes.func,
 }
