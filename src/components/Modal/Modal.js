@@ -1,15 +1,6 @@
 import css from '../Styles.module.css';
-// import propTypes from 'prop-types';
 import { Component } from 'react';
 
-
-// export const Modal = ({ src, alt, handleClose }) => (
-//     <div className={css.Overlay} onClick={handleClose}>
-//         <div className={css.Modal}>
-//             <img src={src} alt={alt} />
-//         </div>
-//     </div>
-// );
 
 export class Modal extends Component {
 
