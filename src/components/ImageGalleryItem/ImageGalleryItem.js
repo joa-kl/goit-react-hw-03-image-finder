@@ -5,7 +5,7 @@ export const ImageGalleryItem = ({ webformatURL, largeImageURL, tags, onOpenModa
   
         <li className={css.ImageGalleryItem}>
             <img
-            className={css.Image}
+            className={css.ImageGalleryItemImage}
             src={webformatURL}
             data-source={largeImageURL}
             alt={tags}
